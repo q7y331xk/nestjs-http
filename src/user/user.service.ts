@@ -20,7 +20,7 @@ export class UserService {
       const userSaved = await this.userRepository.save(userNew);
       return new ResponseSuccess(userSaved);
     } catch (err) {
-      return new ResponseException(err);
+      return new ResponseException(...err);
     }
   }
 
@@ -29,17 +29,17 @@ export class UserService {
       const usersExist = await this.userRepository.find();
       return new ResponseSuccess(usersExist);
     } catch (err) {
-      return new ResponseException(err);
+      return new ResponseException(...err);
     }
   }
 
   async findOne(id: number): DefaultPromiseResponse {
     try {
       const userExist = await this.userRepository.findOne({ where: { id } });
-      if (!userExist) throw 'no user exist'
+      if (!userExist) throw ['user not found', HttpStatus.NOT_FOUND];
       return new ResponseSuccess(userExist);
     } catch (err) {
-      return new ResponseException(err);
+      throw new ResponseException(...err);
     }
   }
 
@@ -47,7 +47,7 @@ export class UserService {
     try {
       const userExist = await this.userRepository.findOne({ where: { id } });
       if (!userExist) {
-        throw 'no user exist';
+        throw ['no user exist'];
       }
       const userUpdate = await this.userRepository.update(
         userExist,
@@ -55,7 +55,7 @@ export class UserService {
       );
       return new ResponseSuccess(userUpdate);
     } catch (err) {
-      return new ResponseException(err);
+      return new ResponseException(...err);
     }
   }
 
@@ -68,7 +68,7 @@ export class UserService {
       const userRemoved = await this.userRepository.remove(userExist);
       return new ResponseSuccess(userRemoved);
     } catch (err) {
-      return new ResponseException(err);
+      return new ResponseException(...err);
     }
   }
 }

@@ -1,7 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './shared/status-code.filter';
+import { HttpExceptionFilter } from './shared/http-exception.filter';
 
 async function bootstrap() {
   console.log(`\t🚀 server run on port:\t${process.env.PORT}`);

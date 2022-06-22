@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { catchHandler } from 'src/shared/throw-error-in-catch';
 
 @Injectable()
 export class UserService {
@@ -39,7 +40,7 @@ export class UserService {
       if (!userExist) throw ['user not found', HttpStatus.NOT_FOUND];
       return new ResponseSuccess(userExist);
     } catch (err) {
-      throw new ResponseException(...err);
+      catchHandler(err);
     }
   }
 

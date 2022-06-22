@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import configOptions from './app-options/config-options';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { UserModule } from './user/user.module';
+import { UserModule } from './easy-user/user.module';
 
 @Module({
   imports: [ConfigModule.forRoot(configOptions),

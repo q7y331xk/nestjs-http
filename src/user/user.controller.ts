@@ -29,6 +29,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @HttpCode(HttpStatus.CREATED)
   @Get(':id([0-9]+)')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);

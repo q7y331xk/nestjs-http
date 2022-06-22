@@ -40,7 +40,7 @@ export class UserService {
     try {
       const userExist = await this.userRepository.findOne({ where: { id } });
       if (!userExist) throw ['user not found', HttpStatus.NOT_FOUND];
-      return new ResponseSuccess(userExist);
+      return new ResponseSuccess(userExist, 'message', HttpStatus.CREATED);
     } catch (err) {
       catchHandler(err);
     }

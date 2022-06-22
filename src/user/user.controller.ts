@@ -1,4 +1,4 @@
-import { DefaultPromiseResponse } from './../shared/types';
+import { DefaultPromiseResponse } from '../types/http-response.type';
 import {
   Controller,
   Get,
@@ -7,6 +7,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -26,6 +28,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @HttpCode(HttpStatus.CREATED)
   @Get(':id([0-9]+)')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);

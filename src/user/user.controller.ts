@@ -9,6 +9,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Res,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -28,7 +29,6 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @HttpCode(HttpStatus.CREATED)
   @Get(':id([0-9]+)')
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);
